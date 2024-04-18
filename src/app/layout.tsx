@@ -10,7 +10,7 @@ const fontSans = FontSans({
 
 export const metadata: Metadata = {
   title: "Marketplace Hedy",
-  description: "Website marketplace about differents products",
+  description: "Website marketplace about different products",
 };
 
 export default function RootLayout({
