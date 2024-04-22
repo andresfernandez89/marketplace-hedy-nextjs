@@ -56,9 +56,13 @@
   body {
     @apply bg-background text-foreground;
   }
-
+  .main-home {
+    display: flex;
+    flex-direction: column;
+  }
   .hero-container {
     margin-top: 1rem;
+    margin-bottom: 1rem;
     background-image: linear-gradient(
       to right top,
       #043a8b,
@@ -88,7 +92,20 @@
   .hero-image {
     display: flex;
     flex-grow: 1;
+    flex-shrink: 1;
     max-height: 25rem;
     min-height: 10rem;
+  }
+
+  .categories-bar {
+    height: 6rem;
+    width: 100%;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(22, 30, 53);
+    border-radius: 2rem;
+    gap: 2rem;
   }
 }
