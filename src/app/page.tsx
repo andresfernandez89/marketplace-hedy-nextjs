@@ -1,5 +1,10 @@
-import ProductId from "./[idProduct]/page";
+//import ProductId from "./[idProduct]/page";
+import HomeHero from "@/components/HomeHero";
 
 export default function Home() {
-  return <main className="">Listado de productos</main>;
+  return (
+    <main>
+      <HomeHero />
+    </main>
+  );
 }

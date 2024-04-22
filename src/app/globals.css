@@ -56,4 +56,39 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  .hero-container {
+    margin-top: 1rem;
+    background-image: linear-gradient(
+      to right top,
+      #043a8b,
+      #0445a5,
+      #003795,
+      #0039a7,
+      #0f3bb9
+    );
+    background-size: cover;
+    display: flex;
+    border-radius: 2rem;
+    font-size: 3rem;
+    font-weight: bold;
+    padding: 2rem;
+    justify-content: space-around;
+  }
+
+  .hero-title {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .hero-image {
+    display: flex;
+    flex-grow: 1;
+    max-height: 25rem;
+    min-height: 10rem;
+  }
 }
