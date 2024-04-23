@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { getProductById } from "@/lib/api";
 import { capitalizeFirstLetter } from "@/lib/utils";
+import Counter from "@/components/counter";
 
 export default async function ProductId() {
   const product = await getProductById(5);
@@ -59,23 +60,7 @@ export default async function ProductId() {
           ${product.price}
         </p>
         <div className="mt-4 flex flex-col items-end md:mt-1 md:justify-end md:pr-2">
-          <div className="flex items-center gap-x-2 py-2">
-            <Button
-              className="w-9 text-base font-bold"
-              size="sm"
-              variant="outline"
-            >
-              -
-            </Button>
-            <span className="font-bold text-gray-900 dark:text-white">0</span>
-            <Button
-              className="w-9 text-base font-bold"
-              size="sm"
-              variant="outline"
-            >
-              +
-            </Button>
-          </div>
+          <Counter />
           <Button className="mt-1 w-full md:ml-2" size="sm">
             Add to Cart
           </Button>
