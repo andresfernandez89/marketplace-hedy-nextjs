@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { type IUseCounterResult } from "@/types/Counter";
 
-export default function useCounter() {
+export default function useCounter(): IUseCounterResult {
   const [count, setCount] = useState<number>(0);
 
   const handleIncrement: () => void = () => {
