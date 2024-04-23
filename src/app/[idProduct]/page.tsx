@@ -10,12 +10,17 @@ import { getProductById } from "@/lib/api";
 import { capitalizeFirstLetter } from "@/lib/utils";
 import Counter from "@/components/counter";
 import Rating from "@/components/rating";
+import { type IProduct } from "@/types/Api";
 
-export default async function ProductId() {
-  const product = await getProductById(2);
+export default async function ProductId({
+  params,
+}: {
+  params: { idProduct: IProduct["id"] };
+}) {
+  const product = await getProductById(params.idProduct);
   return (
     <Card className="mx-4 my-10 md:mx-auto md:flex md:max-w-4xl ">
-      <div className="relative bg-[#fefefe]  max-md:rounded-t-lg md:max-h-80 md:w-full md:rounded-l-lg ">
+      <div className="relative bg-[#fefefe]  max-md:rounded-t-lg md:max-h-80 md:w-full md:rounded-l-lg">
         <Image
           className="object-contain max-md:max-h-[275px] max-sm:rounded-t-lg"
           width={480}
