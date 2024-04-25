@@ -1,4 +1,6 @@
 "use client";
+import { User, AppContextType } from "../../types/Auth";
+
 import {
   createContext,
   useState,
@@ -14,20 +16,7 @@ import {
   User as FirebaseUser,
 } from "firebase/auth";
 import { app } from "@/app/firebase/firebaseConfig";
-
 const auth = getAuth(app);
-
-type User = {
-  uid: string;
-  email: string;
-  displayName: string;
-};
-
-type AppContextType = {
-  user: User | null;
-  signOut: () => Promise<void>;
-  signIn: () => Promise<void>;
-};
 
 const AppContext = createContext<AppContextType | null>(null);
 
@@ -47,6 +36,7 @@ export default function AppWrapper({ children }: Props) {
             uid: user.uid,
             displayName: user.displayName || "",
             email: user.email || "",
+            photoURL: user.photoURL || "",
           };
           setUser(newUser);
         } else {
