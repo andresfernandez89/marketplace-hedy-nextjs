@@ -3,7 +3,7 @@ import "./globals.css";
 import { Inter as FontSans } from "next/font/google";
 import { cn } from "@/lib/utils";
 import AppWrapper from "./context/AuthContext";
-import Auth from "./components/(Authentication)/auth";
+import Navbar from "@/components/ui/navbar";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -23,13 +23,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
+        // className={cn(
+        //   "dark m-auto flex min-h-screen max-w-7xl items-center justify-center bg-background font-sans antialiased",
+        //   fontSans.variable,
+        // )}
         className={cn(
-          "dark m-auto flex min-h-screen max-w-7xl items-center justify-center bg-background font-sans antialiased",
+          "dark m-auto max-w-7xl items-center bg-background font-sans antialiased",
           fontSans.variable,
         )}
       >
         <AppWrapper>
-          <Auth />
+          <Navbar />
           {children}
         </AppWrapper>
       </body>
