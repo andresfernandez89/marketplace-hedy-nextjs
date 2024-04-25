@@ -1,6 +1,6 @@
 const HomeHero = () => {
   return (
-    <div className="hero-container">
+    <div className="hero-container shrink-0">
       <div className="hero-title">
         <span>Welcome to</span>
         <span>Hedy Marketplace</span>
