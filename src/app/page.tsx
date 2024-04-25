@@ -65,6 +65,7 @@ export default function Home() {
         totalPages={totalPages}
         onNextPage={onNextPage}
         onPrevPage={onPrevPage}
+        setPage={setPage}
       />
     </main>
   );

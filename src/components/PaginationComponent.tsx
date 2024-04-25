@@ -13,6 +13,7 @@ interface PaginationProps {
   totalPages: number;
   onNextPage: () => void;
   onPrevPage: () => void;
+  setPage: (number: number) => void;
 }
 
 const PaginationComponent: React.FC<PaginationProps> = ({
@@ -20,6 +21,7 @@ const PaginationComponent: React.FC<PaginationProps> = ({
   totalPages,
   onNextPage,
   onPrevPage,
+  setPage,
 }) => {
   const renderPageNumbers = () => {
     const pages = [];
@@ -29,7 +31,7 @@ const PaginationComponent: React.FC<PaginationProps> = ({
           <PaginationLink
             href="#"
             isActive={i === currentPage}
-            onClick={() => handlePageChange(i)}
+            onClick={() => setPage(i)}
           >
             {i}
           </PaginationLink>
