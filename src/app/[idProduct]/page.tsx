@@ -6,7 +6,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { getProductById } from "@/lib/api";
+import { getProductByIdWithDelay } from "@/lib/api";
 import { capitalizeFirstLetter } from "@/lib/utils";
 import Counter from "@/components/counter";
 import Rating from "@/components/rating";
@@ -17,16 +17,17 @@ export default async function ProductId({
 }: {
   params: { idProduct: IProduct["id"] };
 }) {
-  const product = await getProductById(params.idProduct);
+  const product = await getProductByIdWithDelay(params.idProduct);
   return (
-    <Card className="mx-4 my-10 md:mx-auto md:flex md:max-w-4xl ">
-      <div className="relative bg-[#fefefe]  max-md:rounded-t-lg md:max-h-80 md:w-full md:rounded-l-lg">
+    <Card className="mx-4 my-10 md:mx-auto md:flex md:max-w-4xl">
+      <div className="relative bg-[#fefefe] max-md:rounded-t-lg md:max-h-80 md:w-full md:rounded-l-lg">
         <Image
           className="object-contain max-md:max-h-[275px] max-sm:rounded-t-lg"
           width={480}
           height={640}
           src={product.image}
           alt={product.title}
+          priority
           style={{
             width: "100%",
             height: "100%",
