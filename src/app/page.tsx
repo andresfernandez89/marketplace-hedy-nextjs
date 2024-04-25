@@ -1,9 +1,10 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import HomeHero from "@/components/HomeHero";
 import CategoriesBar from "@/components/CategoriesBar";
-import ProductsGrid from "@/components/ProductsGrid";
+import ProductsGrid from "@/components/ProductsGrid/ProductsGrid";
 import PaginationComponent from "@/components/PaginationComponent";
+import Loading from "./loading";
 
 export interface Product {
   id: number;
@@ -19,7 +20,6 @@ export default function Home() {
   const [category, setCategory] = useState<string>("all");
   const [page, setPage] = useState<number>(1);
   const [perPage] = useState<number>(6);
-  const [loading, setLoading] = useState<boolean>(true);
   const totalPages = Math.ceil(products.length / perPage);
 
   useEffect(() => {
@@ -29,14 +29,14 @@ export default function Home() {
   const fetchProducts = async () => {
     let url: string = "https://fakestoreapi.com/products";
     if (category !== "all") {
-      setLoading(true);
       url += `/category/${category}`;
       console.log(url);
     }
-    const response = await fetch(url);
-    const data = await response.json();
-    setProducts(data);
-    setLoading(false);
+    setTimeout(async () => {
+      const response = await fetch(url);
+      const data = await response.json();
+      setProducts(data);
+    }, 2000);
   };
 
   const changeCategory = (newCategory: string) => {
@@ -59,26 +59,14 @@ export default function Home() {
   return (
     <main className="main-home">
       <HomeHero />
-      <CategoriesBar changeCategory={changeCategory} />
-      {loading ? (
-        <div className="flex h-screen items-center justify-center text-center font-extrabold">
-          <img
-            src="loading-svg.svg"
-            className="... mr-3 h-5 w-5 animate-spin bg-slate-300 text-slate-300"
-          />
-          Loading...
-        </div>
-      ) : (
-        <>
-          <ProductsGrid products={currentPageProducts} />
-          <PaginationComponent
-            currentPage={page}
-            totalPages={totalPages}
-            onNextPage={onNextPage}
-            onPrevPage={onPrevPage}
-          />
-        </>
-      )}
+      <CategoriesBar changeCategory={changeCategory} category={category} />
+      <ProductsGrid products={currentPageProducts} />
+      <PaginationComponent
+        currentPage={page}
+        totalPages={totalPages}
+        onNextPage={onNextPage}
+        onPrevPage={onPrevPage}
+      />
     </main>
   );
 }

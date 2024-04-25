@@ -1,5 +1,15 @@
 import { Product } from "@/app/page";
 import Link from "next/link";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Skeleton } from "./ui/skeleton";
+import Image from "next/image";
 
 interface ProductCardProps {
   product: Product;
@@ -8,17 +18,19 @@ interface ProductCardProps {
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   return (
     <Link href={`/product/${product.id}`}>
-      <div className="flex h-96 w-[250px] flex-col  items-center justify-between rounded-xl border bg-blue-950 pt-0 text-center shadow-md transition delay-150 ease-in-out hover:-translate-y-1 hover:scale-105">
-        <img
+      <Card className="flex h-96 w-[250px] flex-col  items-center justify-between rounded-xl border  pt-0 text-center shadow-md transition delay-150 ease-in-out hover:-translate-y-1 hover:scale-105">
+        <Image
           src={product.image}
           alt={product.title}
+          width={250}
+          height={250}
           className="mt-0 h-[250px] w-[250px] shrink grow-0 rounded-t-xl shadow-sm"
         />
-        <h3>{product.title}</h3>
-        <p className="w-full rounded-b-xl bg-slate-300 pb-2 pl-4 pt-2 text-left font-extrabold text-blue-950">
-          ${product.price}
-        </p>
-      </div>
+        <CardDescription className="p-4">{product.title}</CardDescription>
+        <CardFooter>
+          <p className="font-medium">${product.price}</p>
+        </CardFooter>
+      </Card>
     </Link>
   );
 };

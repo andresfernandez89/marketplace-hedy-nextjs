@@ -1,5 +1,5 @@
-import ProductCard from "./ProductCard";
-import { Product } from "../app/page";
+import ProductCard from "../ProductCard";
+import { Product } from "../../app/page";
 
 interface ProductsGridProps {
   products: Product[];
