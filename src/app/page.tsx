@@ -32,11 +32,10 @@ export default function Home() {
       url += `/category/${category}`;
       console.log(url);
     }
-    setTimeout(async () => {
-      const response = await fetch(url);
-      const data = await response.json();
-      setProducts(data);
-    }, 2000);
+
+    const response = await fetch(url);
+    const data = await response.json();
+    setProducts(data);
   };
 
   const changeCategory = (newCategory: string) => {
