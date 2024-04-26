@@ -1,3 +1,6 @@
+import Counter from "@/components/Counter";
+import Rating from "@/components/Rating";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,

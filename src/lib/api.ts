@@ -1,7 +1,7 @@
 import { IProduct } from "@/types/Api";
 
 const getApiUrl = async (path: string) => {
-  const response = await fetch(`https://fakestoreapi.com/${path}`);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URI}${path}`);
   return response.json();
 };
 

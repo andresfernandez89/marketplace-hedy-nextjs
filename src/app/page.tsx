@@ -1,10 +1,9 @@
 "use client";
-import { useState, useEffect, Suspense } from "react";
-import HomeHero from "@/components/HomeHero";
 import CategoriesBar from "@/components/CategoriesBar";
-import ProductsGrid from "@/components/ProductsGrid/ProductsGrid";
+import HomeHero from "@/components/HomeHero";
 import PaginationComponent from "@/components/PaginationComponent";
-import Loading from "./loading";
+import ProductsGrid from "@/components/ProductsGrid/ProductsGrid";
+import { useEffect, useState } from "react";
 
 export interface Product {
   id: number;
