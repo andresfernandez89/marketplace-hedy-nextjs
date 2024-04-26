@@ -20,23 +20,22 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <body
-        // className={cn(
-        //   "dark m-auto flex min-h-screen max-w-7xl items-center justify-center bg-background font-sans antialiased",
-        //   fontSans.variable,
-        // )}
-        className={cn(
-          "dark m-auto max-w-7xl items-center bg-background font-sans antialiased",
-          fontSans.variable,
-        )}
-      >
-        <AppWrapper>
-          <Navbar />
-          {children}
-        </AppWrapper>
-      </body>
-    </html>
-  );
+  if (process.env.NEXT_PUBLIC_API_URI) {
+    return (
+      <html lang="en">
+        <body
+          className={cn(
+            "dark m-auto max-w-7xl items-center bg-background font-sans antialiased",
+            fontSans.variable,
+          )}
+        >
+          <AppWrapper>
+            <Navbar />
+            {children}
+          </AppWrapper>
+        </body>
+      </html>
+    );
+  }
+  throw new Error("Some env variables not set");
 }
