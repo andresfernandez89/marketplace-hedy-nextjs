@@ -5,6 +5,7 @@ import CategoriesBar from "@/components/CategoriesBar";
 import ProductsGrid from "@/components/ProductsGrid/ProductsGrid";
 import PaginationComponent from "@/components/PaginationComponent";
 import Loading from "./loading";
+import { CartProvider } from "./context/CartContext";
 
 export interface Product {
   id: number;
@@ -57,16 +58,18 @@ export default function Home() {
 
   return (
     <main className="main-home">
-      <HomeHero />
-      <CategoriesBar changeCategory={changeCategory} category={category} />
-      <ProductsGrid products={currentPageProducts} />
-      <PaginationComponent
-        currentPage={page}
-        totalPages={totalPages}
-        onNextPage={onNextPage}
-        onPrevPage={onPrevPage}
-        setPage={setPage}
-      />
+      <CartProvider>
+        <HomeHero />
+        <CategoriesBar changeCategory={changeCategory} category={category} />
+        <ProductsGrid products={currentPageProducts} />
+        <PaginationComponent
+          currentPage={page}
+          totalPages={totalPages}
+          onNextPage={onNextPage}
+          onPrevPage={onPrevPage}
+          setPage={setPage}
+        />
+      </CartProvider>
     </main>
   );
 }
