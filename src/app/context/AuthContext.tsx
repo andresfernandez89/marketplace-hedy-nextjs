@@ -1,5 +1,6 @@
 "use client";
 import { User, AppContextType } from "../../types/Auth";
+import { Product, CartContextType } from "@/types/cart";
 
 import {
   createContext,
@@ -16,9 +17,11 @@ import {
   User as FirebaseUser,
 } from "firebase/auth";
 import { app } from "@/app/firebase/firebaseConfig";
+
 const auth = getAuth(app);
 
 const AppContext = createContext<AppContextType | null>(null);
+const CartContext = createContext<CartContextType | null>(null);
 
 interface Props {
   children: ReactNode;
@@ -26,6 +29,15 @@ interface Props {
 
 export default function AppWrapper({ children }: Props) {
   const [user, setUser] = useState<User | null>(null);
+  const [cart, setCart] = useState<Product[]>([]);
+
+  const addToCart = (product: Product) => {
+    setCart([...cart, product]);
+  };
+
+  const clearCart = () => {
+    setCart([]);
+  };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(
@@ -52,28 +64,25 @@ export default function AppWrapper({ children }: Props) {
     try {
       await signInWithPopup(auth, provider);
     } catch (error) {
-      console.error("Error al iniciar sesión con Google:", error);
-      alert(
-        "Hubo un error al iniciar sesión. Por favor, inténtalo de nuevo más tarde.",
-      );
+      console.error("Error signing in with Google.", error);
+      alert("There was an error signing in. Please try again later");
     }
   };
 
   const signOut = async () => {
     try {
       await auth.signOut();
-      alert("Sesión cerrada");
     } catch (error) {
-      console.error("Error al cerrar sesión:", error);
-      alert(
-        "Hubo un error al cerrar sesión. Por favor, inténtalo de nuevo más tarde.",
-      );
+      console.error("Error signing out with Google.", error);
+      alert("There was an error signing out. Please try again later");
     }
   };
 
   return (
     <AppContext.Provider value={{ user, signOut, signIn: signInWithGoogle }}>
-      {children}
+      <CartContext.Provider value={{ cart, addToCart, clearCart }}>
+        {children}
+      </CartContext.Provider>
     </AppContext.Provider>
   );
 }
@@ -82,6 +91,16 @@ export const useAuth = (): AppContextType => {
   const context = useContext(AppContext);
   if (!context) {
     throw new Error("useAuth debe ser utilizado dentro de un AuthProvider");
+  }
+  return context;
+};
+
+export const useCart = (): CartContextType => {
+  const context = useContext(CartContext);
+  if (!context) {
+    throw new Error(
+      "useCarrito debe ser utilizado dentro de un CarritoProvider",
+    );
   }
   return context;
 };
