@@ -1,11 +1,9 @@
 "use client";
-import { useState, useEffect, Suspense } from "react";
-import HomeHero from "@/components/HomeHero";
 import CategoriesBar from "@/components/CategoriesBar";
-import ProductsGrid from "@/components/ProductsGrid/ProductsGrid";
+import HomeHero from "@/components/HomeHero";
 import PaginationComponent from "@/components/PaginationComponent";
-import Loading from "./loading";
-import { CartProvider } from "./context/CartContext";
+import ProductsGrid from "@/components/ProductsGrid/ProductsGrid";
+import { useEffect, useState } from "react";
 
 export interface Product {
   id: number;
@@ -58,18 +56,16 @@ export default function Home() {
 
   return (
     <main className="main-home">
-      <CartProvider>
-        <HomeHero />
-        <CategoriesBar changeCategory={changeCategory} category={category} />
-        <ProductsGrid products={currentPageProducts} />
-        <PaginationComponent
-          currentPage={page}
-          totalPages={totalPages}
-          onNextPage={onNextPage}
-          onPrevPage={onPrevPage}
-          setPage={setPage}
-        />
-      </CartProvider>
+      <HomeHero />
+      <CategoriesBar changeCategory={changeCategory} category={category} />
+      <ProductsGrid products={currentPageProducts} />
+      <PaginationComponent
+        currentPage={page}
+        totalPages={totalPages}
+        onNextPage={onNextPage}
+        onPrevPage={onPrevPage}
+        setPage={setPage}
+      />
     </main>
   );
 }

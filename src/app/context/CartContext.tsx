@@ -1,9 +1,10 @@
-import { createContext, useContext, useEffect, useState } from "react";
+"use client";
 import {
   type ICartContextType,
   type ICartProviderProps,
   type IItem,
 } from "@/types/Cart";
+import { createContext, useContext, useEffect, useState } from "react";
 
 export const CartContext = createContext<ICartContextType | null>(null);
 
