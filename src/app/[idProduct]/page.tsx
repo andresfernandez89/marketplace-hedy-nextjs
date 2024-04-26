@@ -1,17 +1,16 @@
-import Image from "next/image";
+import Counter from "@/components/Counter";
+import Rating from "@/components/Rating";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
 } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import Counter from "@/components/counter";
-import Rating from "@/components/rating";
 import { getProductByIdWithDelay } from "@/lib/api";
 import { capitalizeFirstLetter } from "@/lib/utils";
 import { type IProduct } from "@/types/Api";
-import { useCart } from "../context/CartContext";
+import Image from "next/image";
 
 export default async function ProductId({
   params,
