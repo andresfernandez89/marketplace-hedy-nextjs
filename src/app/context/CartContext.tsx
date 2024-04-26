@@ -18,14 +18,17 @@ export function CartProvider({ children }: ICartProviderProps) {
     }
   }, []);
 
+  function updateStorageAndCart(newCart: IItem[]) {
+    setCart(newCart);
+    localStorage.setItem("cart", JSON.stringify(newCart));
+  }
   function addItem(item: IItem) {
-    localStorage.setItem("cart", JSON.stringify([...cart, item]));
-    setCart([...cart, item]);
+    const updatedCart = [...cart, item];
+    updateStorageAndCart(updatedCart);
   }
   function deleteItem(itemId: IItem["id"]) {
     const updatedCart = cart.filter((item) => item.id !== itemId);
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
-    setCart(updatedCart);
+    updateStorageAndCart(updatedCart);
   }
   function clear() {
     localStorage.clear();
@@ -34,6 +37,7 @@ export function CartProvider({ children }: ICartProviderProps) {
 
   const contextValue: ICartContextType = {
     cart,
+    updateStorageAndCart,
     addItem,
     deleteItem,
     clear,

@@ -15,6 +15,7 @@ export interface IItem {
 
 export interface ICartContextType {
   cart: IItem[];
+  updateStorageAndCart: (newCart: IItem[]) => void;
   addItem: (item: IItem) => void;
   deleteItem: (itemId: IItem["id"]) => void;
   clear: () => void;
