@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useAuth } from "../../app/context/AuthContext";
+import { useAuth } from "../app/context/AuthContext";
 
 export default function Auth() {
   const { user, signIn, signOut } = useAuth();
