@@ -86,10 +86,7 @@ export default function Cart() {
                   </tr>
                 ))}
                 <tr>
-                  <td className={styles.productDetails}></td>
-                  <td className={styles.quantity}></td>
-                  <td className={styles.price}></td>
-                  <td className={styles.total}>
+                  <td colSpan={4} className={styles.total}>
                     Total Spent: ${totalSpent.toFixed(2)}
                   </td>
                 </tr>

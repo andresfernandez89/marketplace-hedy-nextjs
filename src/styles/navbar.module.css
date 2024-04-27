@@ -35,6 +35,11 @@
   text-align: center;
 }
 
+.cartContainer {
+  display: flex;
+  flex-direction: column;
+}
+
 .tableContainer {
   overflow-x: auto;
 }
@@ -82,12 +87,18 @@
 .quantity {
   text-align: center;
 }
+.quantityValue {
+  width: 20px;
+  display: inline-block;
+  text-align: center;
+}
 
 .quantityButton {
   background-color: #e0e0e0;
   color: #333;
   border: none;
   padding: 5px;
+  margin: 0 5px;
   cursor: pointer;
 }
 
@@ -133,4 +144,9 @@
 .emptyCartText {
   font-size: 18px;
   margin-top: 20px;
+}
+
+.total {
+  width: 80px;
+  text-align: center;
 }
