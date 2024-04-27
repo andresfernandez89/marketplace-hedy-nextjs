@@ -8,8 +8,8 @@ import { getProductByIdWithDelay } from "@/lib/api";
 import { capitalizeFirstLetter } from "@/lib/utils";
 import Image from "next/image";
 // import Counter from "@/components/counter";
-import AddToCartButton from "@/components/addToCart";
-import Rating from "@/components/rating";
+import AddToCartButton from "@/components/AddToCart";
+import Rating from "@/components/Rating";
 import { IProduct } from "@/types/Api";
 
 export default async function ProductId({

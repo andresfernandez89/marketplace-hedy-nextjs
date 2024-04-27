@@ -33,13 +33,13 @@ const CategoriesBar: React.FC<CategoriesBarProps> = ({
         onClick={() => changeCategory("men's%20clothing")}
         isFocused={category === "men's%20clothing"}
       >
-        Men's Clothing
+        Men&apos;s Clothing
       </CategoryButton>
       <CategoryButton
         onClick={() => changeCategory("women's%20clothing")}
         isFocused={category === "women's%20clothing"}
       >
-        Women's Clothing
+        Women&apos;s Clothing
       </CategoryButton>
     </div>
   );
