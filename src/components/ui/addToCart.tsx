@@ -1,17 +1,18 @@
 "use client";
-import { useCart } from "@/app/context/AuthContext";
-import { Product } from "@/types/cart";
+import React from "react";
 import { Button } from "./button";
+import { IItem } from "@/types/Cart";
+import { useCart } from "@/app/context/CartContext";
 
 interface Props {
-  product: Product;
+  product: IItem;
 }
 
 const AddToCartButton: React.FC<Props> = ({ product }) => {
-  const { addToCart } = useCart();
+  const { addItem } = useCart();
 
   const handleAddToCart = () => {
-    addToCart(product);
+    addItem(product);
   };
 
   return (

@@ -3,6 +3,27 @@
 }
 
 /* Cart */
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-8px);
+  }
+  60% {
+    transform: translateY(-4px);
+  }
+}
+
+.show {
+  display: block;
+  animation: bounce 0.5s ease infinite;
+}
+
 .cartContainer {
   margin: 0 auto;
   padding: 20px;

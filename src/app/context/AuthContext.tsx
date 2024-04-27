@@ -1,6 +1,6 @@
 "use client";
-import { User, AppContextType } from "../../types/Auth";
-import { Product, CartContextType } from "@/types/cart";
+import { type User, type AppContextType } from "@/types/Auth";
+import { type Product, type CartContextType } from "@/types/cart";
 
 import {
   createContext,
@@ -80,9 +80,9 @@ export default function AppWrapper({ children }: Props) {
 
   return (
     <AppContext.Provider value={{ user, signOut, signIn: signInWithGoogle }}>
-      <CartContext.Provider value={{ cart, addToCart, clearCart }}>
-        {children}
-      </CartContext.Provider>
+      {/* <CartContext.Provider value={{ cart, addToCart, clearCart }}> */}
+      {children}
+      {/* </CartContext.Provider> */}
     </AppContext.Provider>
   );
 }
@@ -95,12 +95,12 @@ export const useAuth = (): AppContextType => {
   return context;
 };
 
-export const useCart = (): CartContextType => {
-  const context = useContext(CartContext);
-  if (!context) {
-    throw new Error(
-      "useCarrito debe ser utilizado dentro de un CarritoProvider",
-    );
-  }
-  return context;
-};
+// export const useCart = (): CartContextType => {
+//   const context = useContext(CartContext);
+//   if (!context) {
+//     throw new Error(
+//       "useCarrito debe ser utilizado dentro de un CarritoProvider",
+//     );
+//   }
+//   return context;
+// };

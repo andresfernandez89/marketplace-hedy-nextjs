@@ -1,6 +1,3 @@
-import Counter from "@/components/Counter";
-import Rating from "@/components/Rating";
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -10,7 +7,7 @@ import {
 import Image from "next/image";
 import { getProductByIdWithDelay } from "@/lib/api";
 import { capitalizeFirstLetter } from "@/lib/utils";
-import Counter from "@/components/counter";
+// import Counter from "@/components/counter";
 import Rating from "@/components/rating";
 import { IProduct } from "@/types/Api";
 import AddToCartButton from "@/components/ui/addToCart";
@@ -51,7 +48,7 @@ export default async function ProductId({
           ${product.price}
         </p>
         <div className="mt-4 flex flex-col items-end md:mt-1 md:justify-end md:pr-2">
-          <Counter />
+          {/* <Counter /> */}
           <AddToCartButton product={product} />
         </div>
       </CardContent>

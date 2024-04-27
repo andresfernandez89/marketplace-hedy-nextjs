@@ -1,10 +1,28 @@
 "use client";
 import Image from "next/image";
 import styles from "../../styles/navbar.module.css";
-import { useCart } from "../context/AuthContext";
+import { useCart } from "../context/CartContext";
+import { useAuth } from "../context/AuthContext";
 
 export default function Cart() {
-  const { cart } = useCart();
+  const {
+    cart,
+    clear,
+    deleteItem,
+    increaseQty,
+    decreaseQty,
+    totalSpent,
+    totalByProduct,
+  } = useCart();
+  const { user } = useAuth();
+
+  const handleBuy = () => {
+    if (user) {
+      window.location.href = "/";
+    } else {
+      alert("Please login to continue shopping");
+    }
+  };
 
   return (
     <div className={styles.cartContainer}>
@@ -36,24 +54,55 @@ export default function Cart() {
                       </div>
                       <div className={styles.productInfo}>
                         <p className={styles.productName}>{product.title}</p>
-                        <button className={styles.removeButton}>Remove</button>
+                        <button
+                          className={styles.removeButton}
+                          onClick={() => deleteItem(product.id)}
+                        >
+                          Remove
+                        </button>
                       </div>
                     </td>
                     <td className={styles.quantity}>
-                      <button className={styles.quantityButton}>-</button>
-                      <span className={styles.quantityValue}>1</span>
-                      <button className={styles.quantityButton}>+</button>
+                      <button
+                        className={styles.quantityButton}
+                        onClick={() => decreaseQty(product.id)}
+                      >
+                        -
+                      </button>
+                      <span className={styles.quantityValue}>
+                        {product.quantity}
+                      </span>
+                      <button
+                        className={styles.quantityButton}
+                        onClick={() => increaseQty(product.id)}
+                      >
+                        +
+                      </button>
                     </td>
                     <td className={styles.price}>${product.price}</td>
-                    <td className={styles.total}>${product.price}</td>
+                    <td className={styles.total}>
+                      ${totalByProduct[product.id].toFixed(2)}
+                    </td>
                   </tr>
                 ))}
+                <tr>
+                  <td className={styles.productDetails}></td>
+                  <td className={styles.quantity}></td>
+                  <td className={styles.price}></td>
+                  <td className={styles.total}>
+                    Total Spent: ${totalSpent.toFixed(2)}
+                  </td>
+                </tr>
               </tbody>
             </table>
           </div>
           <div className={styles.cartButtons}>
-            <button className={styles.clearCartButton}>Clear Cart</button>
-            <button className={styles.buyButton}>Buy</button>
+            <button className={styles.clearCartButton} onClick={clear}>
+              Clear Cart
+            </button>
+            <button className={styles.buyButton} onClick={handleBuy}>
+              Buy
+            </button>
           </div>
         </div>
       ) : (
