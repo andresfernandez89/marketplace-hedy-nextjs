@@ -1,4 +1,4 @@
-import Navbar from "@/components/ui/navbar";
+import Navbar from "@/components/Navbar";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
@@ -26,7 +26,7 @@ export default function RootLayout({
       <html lang="en">
         <body
           className={cn(
-            "dark m-auto max-w-7xl items-center bg-background font-sans antialiased",
+            "dark m-auto flex min-h-screen max-w-7xl flex-col items-center bg-background font-sans antialiased",
             fontSans.variable,
           )}
         >
