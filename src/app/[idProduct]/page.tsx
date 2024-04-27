@@ -4,13 +4,13 @@ import {
   CardDescription,
   CardHeader,
 } from "@/components/ui/card";
-import Image from "next/image";
 import { getProductByIdWithDelay } from "@/lib/api";
 import { capitalizeFirstLetter } from "@/lib/utils";
+import Image from "next/image";
 // import Counter from "@/components/counter";
+import AddToCartButton from "@/components/addToCart";
 import Rating from "@/components/rating";
 import { IProduct } from "@/types/Api";
-import AddToCartButton from "@/components/ui/addToCart";
 
 export default async function ProductId({
   params,
