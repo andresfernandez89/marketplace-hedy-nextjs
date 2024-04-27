@@ -1,17 +1,20 @@
 "use client";
+import { useCart } from "@/app/context/CartContext";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useAuth } from "../app/context/AuthContext";
-import cart from "../images/cart.png";
+import cartImg from "../images/cart.png";
 import logoGoogle from "../images/google.png";
 import styles from "../styles/navbar.module.css";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user, signIn, signOut } = useAuth();
+  const { cart } = useCart();
   const menuRef = useRef<HTMLDivElement>(null);
   const userMenuRef = useRef<HTMLDivElement>(null);
+  const [isCartUpdated, setIsCartUpdated] = useState<boolean>(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -45,6 +48,15 @@ const Navbar = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (cart.length > 0) {
+      setIsCartUpdated(true);
+      setTimeout(() => {
+        setIsCartUpdated(false);
+      }, 1000);
+    }
+  }, [cart]);
+
   return (
     <nav className="w-full bg-gray-800">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -73,17 +85,18 @@ const Navbar = () => {
             </div>
           </div>
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-            <button type="button">
+            <Link href="/cart">
               <Image
-                src={cart}
+                src={cartImg}
                 alt="cart"
                 width="0"
                 height="0"
-                className={styles.cart}
+                className={`${styles.cart} ${isCartUpdated ? styles.show : ""}`}
                 style={{ width: "80px", height: "auto" }}
                 priority
               />
-            </button>
+            </Link>
+
             <div className="relative ml-3">
               <div>
                 <button

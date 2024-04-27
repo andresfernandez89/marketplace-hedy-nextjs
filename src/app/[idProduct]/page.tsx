@@ -1,16 +1,16 @@
-import Counter from "@/components/Counter";
-import Rating from "@/components/Rating";
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
 } from "@/components/ui/card";
+import Image from "next/image";
 import { getProductByIdWithDelay } from "@/lib/api";
 import { capitalizeFirstLetter } from "@/lib/utils";
-import { type IProduct } from "@/types/Api";
-import Image from "next/image";
+// import Counter from "@/components/counter";
+import Rating from "@/components/rating";
+import { IProduct } from "@/types/Api";
+import AddToCartButton from "@/components/ui/addToCart";
 
 export default async function ProductId({
   params,
@@ -18,6 +18,7 @@ export default async function ProductId({
   params: { idProduct: IProduct["id"] };
 }) {
   const product = await getProductByIdWithDelay(params.idProduct);
+
   return (
     <Card className="mx-4 my-10 md:mx-auto md:flex md:max-w-4xl">
       <div className="relative bg-[#fefefe] max-md:rounded-t-lg md:max-h-80 md:w-full md:rounded-l-lg">
@@ -47,10 +48,8 @@ export default async function ProductId({
           ${product.price}
         </p>
         <div className="mt-4 flex flex-col items-end md:mt-1 md:justify-end md:pr-2">
-          <Counter />
-          <Button className="mt-1 w-full md:ml-2" size="sm">
-            Add to Cart
-          </Button>
+          {/* <Counter /> */}
+          <AddToCartButton product={product} />
         </div>
       </CardContent>
     </Card>
