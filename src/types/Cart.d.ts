@@ -5,11 +5,12 @@ export interface ICartProviderProps {
 }
 
 export interface IItem {
+  quantity: ReactNode;
   id: IProduct["id"];
   title: IProduct["title"];
   image: IProduct["image"];
   price: IProduct["price"];
-  quantity: number;
+  // quantity: number;
 }
 
 export interface ICartContextType {

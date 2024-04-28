@@ -4,8 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useAuth } from "../app/context/AuthContext";
-import cartImg from "../images/cart.png";
-import logoGoogle from "../images/google.png";
+import cartImg from "../../public/cart.png";
+import logoGoogle from "../../public/google.png";
 import styles from "../styles/navbar.module.css";
 
 const Navbar = () => {

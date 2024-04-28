@@ -11,6 +11,7 @@ import Image from "next/image";
 import AddToCartButton from "@/components/AddToCart";
 import Rating from "@/components/Rating";
 import { IProduct } from "@/types/Api";
+import styles from "../../styles/cardProduct.module.css";
 
 export default async function ProductId({
   params,
@@ -35,21 +36,32 @@ export default async function ProductId({
           }}
         />
       </div>
-      <CardContent className="flex-col max-md:pt-6 md:flex md:justify-evenly md:py-1 md:pl-3 md:pr-1">
-        <CardHeader className="p-0 md:py-1">{product.title}</CardHeader>
+      <CardContent
+        className={`${styles.cardContainer} flex-col max-md:pt-6 md:flex md:justify-evenly md:py-1 md:pl-3 md:pr-1`}
+      >
+        <CardHeader className={`${styles.cardDescription} p-0 md:py-1`}>
+          {product.title}
+        </CardHeader>
         <Rating rate={product.rating.rate} />
-        <p className="mb-3 text-sm font-light text-blue-100">
+        <p
+          className={`${styles.cardInformation} mb-3 text-sm font-light text-blue-100`}
+        >
           {capitalizeFirstLetter(product.category)}
         </p>
-        <CardDescription className="md:pr-6">
+        <CardDescription className={`${styles.cardInformation} md:pr-6`}>
           {capitalizeFirstLetter(product.description)}
         </CardDescription>
-        <p className="my-3 text-end text-2xl font-bold text-gray-900 dark:text-white md:pr-2">
-          ${product.price}
-        </p>
-        <div className="mt-4 flex flex-col items-end md:mt-1 md:justify-end md:pr-2">
-          {/* <Counter /> */}
-          <AddToCartButton product={product} />
+        <div className={styles.productFooter}>
+          <div className="flex w-full items-center justify-between">
+            <p className="my-3 text-end text-2xl font-bold text-gray-900 dark:text-white md:pr-2">
+              ${product.price}
+            </p>
+            <div
+              className={`${styles.cartBtn} mt-4 flex flex-col items-end md:mt-1 md:pr-2`}
+            >
+              <AddToCartButton product={product} />
+            </div>
+          </div>
         </div>
       </CardContent>
     </Card>

@@ -1,18 +1,18 @@
 import { Product } from "@/app/page";
 import Link from "next/link";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Skeleton } from "./ui/skeleton";
+// import {
+//   Card,
+//   CardContent,
+//   CardDescription,
+//   CardFooter,
+//   CardHeader,
+//   CardTitle,
+// } from "@/components/ui/card";
+// import { Skeleton } from "./ui/skeleton";
 import Image from "next/image";
 import styles from "../styles/cardProduct.module.css";
 import { capitalizeFirstLetter } from "@/lib/utils";
-import Rating from "./rating";
+import Rating from "../components/Rating";
 
 interface ProductCardProps {
   product: Product;
@@ -36,10 +36,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             <p>{capitalizeFirstLetter(product.category)}</p>
             <p>${product.price}</p>
           </div>
+
+          <Link href={`/${product.id}`} className={styles.link}>
+            See details
+          </Link>
         </div>
-        <Link href={`/${product.id}`} className={styles.link}>
-          See details
-        </Link>
       </div>
     </div>
   );
