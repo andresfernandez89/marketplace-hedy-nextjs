@@ -1,8 +1,8 @@
 "use client";
-import React from "react";
-import { Button } from "./button";
-import { IItem } from "@/types/Cart";
 import { useCart } from "@/app/context/CartContext";
+import { IItem } from "@/types/Cart";
+import React from "react";
+import { Button } from "./ui/button";
 
 interface Props {
   product: IItem;

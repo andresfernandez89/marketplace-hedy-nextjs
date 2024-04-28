@@ -1,12 +1,12 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
-import { useAuth } from "../../app/context/AuthContext";
-import Link from "next/link";
-import logoGoogle from "../../../public/google.png";
-import cartImg from "../../../public/cart.png";
-import styles from "../../styles/navbar.module.css";
 import { useCart } from "@/app/context/CartContext";
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+import { useAuth } from "../app/context/AuthContext";
+import cartImg from "../images/cart.png";
+import logoGoogle from "../images/google.png";
+import styles from "../styles/navbar.module.css";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -58,7 +58,7 @@ const Navbar = () => {
   }, [cart]);
 
   return (
-    <nav className="bg-gray-800">
+    <nav className="w-full bg-gray-800">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">
           <div className="absolute inset-y-0 left-0 flex items-center "></div>
