@@ -3,8 +3,8 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useAuth } from "../../app/context/AuthContext";
 import Link from "next/link";
-import logoGoogle from "../../images/google.png";
-import cartImg from "../../images/cart.png";
+import logoGoogle from "../../../public/google.png";
+import cartImg from "../../../public/cart.png";
 import styles from "../../styles/navbar.module.css";
 import { useCart } from "@/app/context/CartContext";
 
