@@ -33,6 +33,7 @@
 
 .cartContainer h2 {
   text-align: center;
+  font-weight: bold;
 }
 
 .cartContainer {
@@ -76,8 +77,8 @@
 }
 
 .removeButton {
-  background-color: #f44336;
-  color: white;
+  /* background-color: #f44336; */
+  color: #333;
   border: none;
   padding: 5px 10px;
   border-radius: 5px;

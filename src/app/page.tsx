@@ -6,6 +6,8 @@ import ProductsGrid from "@/components/ProductsGrid/ProductsGrid";
 import { useEffect, useState } from "react";
 
 export interface Product {
+  rating: any;
+  rate: number | undefined;
   id: number;
   title: string;
   price: number;

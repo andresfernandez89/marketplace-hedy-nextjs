@@ -10,6 +10,9 @@ import {
 } from "@/components/ui/card";
 import { Skeleton } from "./ui/skeleton";
 import Image from "next/image";
+import styles from "../styles/cardProduct.module.css";
+import { capitalizeFirstLetter } from "@/lib/utils";
+import Rating from "./rating";
 
 interface ProductCardProps {
   product: Product;
@@ -17,21 +20,28 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   return (
-    <Link href={`/product/${product.id}`}>
-      <Card className="flex h-96 w-[250px] flex-col  items-center justify-between rounded-xl border  pt-0 text-center shadow-md transition delay-150 ease-in-out hover:-translate-y-1 hover:scale-105">
+    <div className={styles.cardContainer}>
+      <div className={styles.card}>
         <Image
           src={product.image}
           alt={product.title}
-          width={250}
-          height={250}
-          className="mt-0 h-[250px] w-[250px] shrink grow-0 rounded-t-xl shadow-sm"
+          width={200}
+          height={200}
+          className={styles.cardImage}
         />
-        <CardDescription className="p-4">{product.title}</CardDescription>
-        <CardFooter>
-          <p className="font-medium">${product.price}</p>
-        </CardFooter>
-      </Card>
-    </Link>
+        <div className={styles.cardDescription}>
+          <p>{product.title}</p>
+          <Rating rate={product.rating.rate} />
+          <div className={styles.cardInformation}>
+            <p>{capitalizeFirstLetter(product.category)}</p>
+            <p>${product.price}</p>
+          </div>
+        </div>
+        <Link href={`/${product.id}`} className={styles.link}>
+          See details
+        </Link>
+      </div>
+    </div>
   );
 };
 
