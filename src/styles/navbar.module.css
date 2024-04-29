@@ -1,3 +1,56 @@
+@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
+
 .cart {
   filter: invert(100%);
+}
+.countItem {
+  position: absolute;
+  visibility: hidden;
+  display: flex;
+  justify-content: center;
+  width: 60px;
+  top: 0;
+  bottom: 0;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #f44336;
+}
+
+@keyframes inside {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  40% {
+    transform: translateY(-8px);
+    opacity: 0.8;
+  }
+  60% {
+    transform: translateY(-12px);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-16px);
+    opacity: 0;
+    visibility: hidden !important;
+  }
+}
+
+.show {
+  display: block;
+  visibility: visible;
+  animation: inside 0.5s forwards;
+}
+.navbarContainer {
+  height: 100px;
+  width: 100vw !important;
+  align-content: center;
+}
+.link {
+  color: #333;
+  font-weight: 300;
+  transition: color 0.3s ease;
+}
+.link:hover {
+  color: #808fa7;
 }

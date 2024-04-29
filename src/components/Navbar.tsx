@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { useAuth } from "../app/context/AuthContext";
 import cartImg from "../../public/cart.png";
 import logoGoogle from "../../public/google.png";
+import logo from "../../public/hedy.png";
 import styles from "../styles/navbar.module.css";
 
 const Navbar = () => {
@@ -15,6 +16,19 @@ const Navbar = () => {
   const menuRef = useRef<HTMLDivElement>(null);
   const userMenuRef = useRef<HTMLDivElement>(null);
   const [isCartUpdated, setIsCartUpdated] = useState<boolean>(false);
+
+  let countProd = 0;
+
+  const storageCart = localStorage.getItem("cart");
+
+  if (storageCart !== null) {
+    const cartArray = JSON.parse(storageCart);
+    let totalProd = 0;
+    for (const product of cartArray) {
+      totalProd += product.quantity;
+      countProd = totalProd;
+    }
+  }
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -58,28 +72,26 @@ const Navbar = () => {
   }, [cart]);
 
   return (
-    <nav className="w-full bg-gray-800">
+    <nav className={`${styles.navbarContainer} w-full bg-gray-800`}>
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">
-          <div className="absolute inset-y-0 left-0 flex items-center "></div>
-          <div className="flex flex-1 sm:items-stretch sm:justify-start">
-            <div className="m:ml-6 sm:block">
-              <div className="flex space-x-4">
-                <p className="rounded-md px-1 py-2 text-sm font-medium text-gray-300">
-                  Logo
-                </p>
+          <div className="absolute inset-y-0 left-0 flex items-center"></div>
+          <div className="flex flex-1 sm:items-center sm:justify-start">
+            <div className="ml-6 sm:block">
+              <div className="flex items-center space-x-4">
+                <Image src={logo} alt="Logo" width={60} height={60} />
                 <Link
                   href="/"
-                  className="rounded-md px-1 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                  className={`${styles.link} flex items-center rounded-md px-1 py-2 text-sm text-gray-300`}
                   aria-current="page"
                 >
                   Home
                 </Link>
                 <Link
-                  href="/product"
-                  className="rounded-md px-1 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                  href="/about"
+                  className={`${styles.link} flex items-center rounded-md px-1 py-2 text-sm text-gray-300`}
                 >
-                  Products
+                  About
                 </Link>
               </div>
             </div>
@@ -91,12 +103,21 @@ const Navbar = () => {
                 alt="cart"
                 width="0"
                 height="0"
-                className={`${styles.cart} ${isCartUpdated ? styles.show : ""}`}
-                style={{ width: "80px", height: "auto" }}
+                className={styles.cart}
+                // className={`${styles.cart} ${isCartUpdated ? styles.show : ""}`}
+                style={{ width: "60px", height: "auto" }}
                 priority
               />
+              {countProd != 0 && (
+                <div className={styles.countItem}>
+                  <p
+                    className={`${styles.cart} ${isCartUpdated ? styles.show : ""}`}
+                  >
+                    {countProd}
+                  </p>
+                </div>
+              )}
             </Link>
-
             <div className="relative ml-3">
               <div>
                 <button
@@ -108,17 +129,19 @@ const Navbar = () => {
                   <span className="sr-only">Open user menu</span>
                   {user ? (
                     <Image
-                      className="h-8 w-8 rounded-full"
+                      className="h-6 w-6 rounded-full"
                       src={user.photoURL}
                       alt="User photo"
                       width={60}
-                      height={100}
+                      height={60}
                     />
                   ) : (
                     <Image
                       src={logoGoogle}
                       alt="Google logo"
-                      className="h-8 w-8 rounded-full"
+                      width={60}
+                      height={60}
+                      className="h-6 w-6 rounded-full"
                     />
                   )}
                 </button>
@@ -135,7 +158,7 @@ const Navbar = () => {
                   {user ? (
                     <button
                       onClick={handleLogoutClick}
-                      className="block px-4 py-2 text-sm text-gray-700"
+                      className="block px-4 py-1 text-sm text-gray-700"
                       role="menuitem"
                       tabIndex={-1}
                     >
@@ -144,7 +167,7 @@ const Navbar = () => {
                   ) : (
                     <button
                       onClick={handleLoginClick}
-                      className="block px-4 py-2 text-sm text-gray-700"
+                      className="block px-4 py-1 text-sm text-gray-700"
                       role="menuitem"
                       tabIndex={-1}
                     >

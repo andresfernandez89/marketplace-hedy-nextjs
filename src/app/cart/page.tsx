@@ -34,10 +34,10 @@ export default function Cart() {
               <table className={styles.productTable}>
                 <thead>
                   <tr className={styles.columnTitles}>
-                    <th className={styles.columnTitle}>Product Details</th>
-                    <th className={styles.columnTitle}>Quantity</th>
-                    <th className={styles.columnTitle}>Price</th>
-                    <th className={styles.columnTitle}>Total</th>
+                    <th className={styles.columnTitle}>PRODUCT DETAILS</th>
+                    <th className={styles.columnTitle}>QUANTITY</th>
+                    <th className={styles.columnTitle}>PRICE</th>
+                    <th className={styles.columnTitle}>TOTAL</th>
                   </tr>
                 </thead>
                 <tbody>
