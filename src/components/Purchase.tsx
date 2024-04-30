@@ -9,17 +9,7 @@ interface PurchaseConfirmationPopupProps {
 const PurchaseConfirm: React.FC<PurchaseConfirmationPopupProps> = ({
   onClose,
 }) => {
-  const [purchasedProducts, setPurchasedProducts] = useState([]);
   const { cart, totalSpent } = useCart();
-
-  useEffect(() => {
-    const storedProducts = localStorage.getItem("cart");
-    console.log(storedProducts);
-    if (storedProducts) {
-      const parsedProducts = JSON.parse(storedProducts);
-      setPurchasedProducts(parsedProducts);
-    }
-  }, []);
 
   return (
     <div className={styles.purchaseContainer}>
@@ -28,11 +18,11 @@ const PurchaseConfirm: React.FC<PurchaseConfirmationPopupProps> = ({
         <p>The purchased products are detailed below:</p>
         <table>
           <thead className={styles.purchaseTitles}>
-            <tr>
-              <th>Product</th>
-              <th>Price</th>
-              <th>Quantity</th>
-              <th>Total</th>
+            <tr className={styles.columnTitles}>
+              <th className={styles.columnTitle}>PRODUCT DETAILS</th>
+              <th className={styles.columnTitle}>PRICE</th>
+              <th className={styles.columnTitle}>QUANTITY</th>
+              <th className={styles.columnTitle}>TOTAL</th>
             </tr>
           </thead>
           <tbody className={styles.purchaseDetails}>
