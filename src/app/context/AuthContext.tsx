@@ -1,6 +1,8 @@
 "use client";
 import { type User, type AppContextType } from "@/types/Auth";
 import { type Product, type CartContextType } from "@/types/cart";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import {
   createContext,
@@ -81,6 +83,7 @@ export default function AppWrapper({ children }: Props) {
   return (
     <AppContext.Provider value={{ user, signOut, signIn: signInWithGoogle }}>
       {/* <CartContext.Provider value={{ cart, addToCart, clearCart }}> */}
+      <ToastContainer />
       {children}
       {/* </CartContext.Provider> */}
     </AppContext.Provider>

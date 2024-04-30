@@ -239,3 +239,21 @@
 }
 
 /**/
+
+/*Purchase*/
+.purchaseTitles {
+  text-align: center;
+}
+.purchaseDetails td {
+  padding: 10px;
+}
+.purchaseDetails td {
+  margin: 10px;
+}
+.purchaseDetails tr > td {
+  text-align: center;
+}
+
+.purchaseDetails tr > td:first-child {
+  text-align: left;
+}

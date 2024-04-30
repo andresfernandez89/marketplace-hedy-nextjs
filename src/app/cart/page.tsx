@@ -3,8 +3,51 @@ import Image from "next/image";
 import styles from "../../styles/cardProduct.module.css";
 import { useCart } from "../context/CartContext";
 import { useAuth } from "../context/AuthContext";
+import { toast } from "react-toastify";
+import { useState } from "react";
+import PurchaseConfirm from "@/components/Purchase";
 
 export default function Cart() {
+  const [showConfirmation, setShowConfirmation] = useState<boolean>(false);
+  const handleClosePopup = () => {
+    setShowConfirmation(false);
+  };
+
+  const notify = () =>
+    toast.success("Thank you!. Purchase completed successfully.", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+
+  const notifyError = () => {
+    toast.error("Something went wrong. Try it later please.", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  const notifyInfo = () => {
+    toast.info("Please login to purchase.", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
   const {
     cart,
     clear,
@@ -18,9 +61,10 @@ export default function Cart() {
 
   const handleBuy = () => {
     if (user) {
-      window.location.href = "/";
+      setShowConfirmation(true);
+      notify();
     } else {
-      alert("Please login to continue shopping");
+      notifyInfo();
     }
   };
 
@@ -108,6 +152,7 @@ export default function Cart() {
             <p className={styles.emptyCartText}>No products in the cart.</p>
           </div>
         )}
+        {showConfirmation && <PurchaseConfirm onClose={handleClosePopup} />}
       </div>
     </div>
   );
