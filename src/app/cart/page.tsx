@@ -9,6 +9,16 @@ import PurchaseConfirm from "@/components/Purchase";
 
 export default function Cart() {
   const [showConfirmation, setShowConfirmation] = useState<boolean>(false);
+  const {
+    cart,
+    clear,
+    deleteItem,
+    increaseQty,
+    decreaseQty,
+    totalSpent,
+    totalByProduct,
+  } = useCart();
+  const { user } = useAuth();
   const handleClosePopup = () => {
     setShowConfirmation(false);
   };
@@ -47,17 +57,6 @@ export default function Cart() {
       progress: undefined,
     });
   };
-
-  const {
-    cart,
-    clear,
-    deleteItem,
-    increaseQty,
-    decreaseQty,
-    totalSpent,
-    totalByProduct,
-  } = useCart();
-  const { user } = useAuth();
 
   const handleBuy = () => {
     if (user) {
