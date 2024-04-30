@@ -1,4 +1,5 @@
 import CategoryButton from "./CategoryButton";
+import styles from "../styles/cardProduct.module.css";
 
 interface CategoriesBarProps {
   changeCategory: (category: string) => void;
@@ -10,7 +11,7 @@ const CategoriesBar: React.FC<CategoriesBarProps> = ({
   category,
 }) => {
   return (
-    <div className="categories-bar bg-blue-950">
+    <div className={styles.categoryContainer}>
       <CategoryButton
         onClick={() => changeCategory("all")}
         isFocused={category === "all"}

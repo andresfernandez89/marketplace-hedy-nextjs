@@ -5,15 +5,15 @@
 }
 .countItem {
   position: absolute;
-  visibility: hidden;
+  /* visibility: hidden; */
   display: flex;
   justify-content: center;
   width: 60px;
-  top: 0;
+  top: 5px;
   bottom: 0;
-  font-weight: 500;
-  font-size: 0.9rem;
-  color: #f44336;
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: #333 !important;
 }
 
 @keyframes inside {
@@ -32,7 +32,7 @@
   100% {
     transform: translateY(-16px);
     opacity: 0;
-    visibility: hidden !important;
+    /* visibility: hidden !important; */
   }
 }
 
@@ -43,14 +43,25 @@
 }
 .navbarContainer {
   height: 100px;
-  width: 100vw !important;
   align-content: center;
+  box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.3);
+  background-color: #020817;
+  z-index: 1;
+}
+.navbarContainer h5 {
+  font-size: 1.8rem;
+  letter-spacing: 1.5px;
+  font-family: "Anton", sans-serif;
 }
 .link {
   color: #333;
-  font-weight: 300;
+  letter-spacing: 2px;
   transition: color 0.3s ease;
+  font-family: "Anton", sans-serif;
 }
 .link:hover {
   color: #808fa7;
+}
+.logoUser {
+  filter: invert(100%);
 }

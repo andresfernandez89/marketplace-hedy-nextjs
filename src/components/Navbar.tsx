@@ -5,8 +5,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useAuth } from "../app/context/AuthContext";
 import cartImg from "../../public/cart.png";
-import logoGoogle from "../../public/google.png";
-import logo from "../../public/hedy.png";
+import logoUser from "../../public/user.png";
 import styles from "../styles/navbar.module.css";
 
 const Navbar = () => {
@@ -72,14 +71,14 @@ const Navbar = () => {
   }, [cart]);
 
   return (
-    <nav className={`${styles.navbarContainer} w-full bg-gray-800`}>
+    <nav className={`${styles.navbarContainer} w-full p-3`}>
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">
           <div className="absolute inset-y-0 left-0 flex items-center"></div>
           <div className="flex flex-1 sm:items-center sm:justify-start">
             <div className="ml-6 sm:block">
               <div className="flex items-center space-x-4">
-                <Image src={logo} alt="Logo" width={60} height={60} />
+                <h5>HY</h5>
                 <Link
                   href="/"
                   className={`${styles.link} flex items-center rounded-md px-1 py-2 text-sm text-gray-300`}
@@ -137,11 +136,11 @@ const Navbar = () => {
                     />
                   ) : (
                     <Image
-                      src={logoGoogle}
-                      alt="Google logo"
+                      src={logoUser}
+                      alt="User logo"
                       width={60}
                       height={60}
-                      className="h-6 w-6 rounded-full"
+                      className={`${styles.logoUser} h-6 w-6 rounded-full`}
                     />
                   )}
                 </button>
@@ -171,7 +170,7 @@ const Navbar = () => {
                       role="menuitem"
                       tabIndex={-1}
                     >
-                      Login
+                      Log in with Google
                     </button>
                   )}
                 </div>

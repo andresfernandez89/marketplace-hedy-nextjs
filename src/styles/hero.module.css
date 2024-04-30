@@ -1,0 +1,14 @@
+.carouselContainer {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  max-width: 1280px;
+  max-height: 700px;
+}
+.carouselImg {
+  width: 100%;
+  height: 700px;
+  object-fit: cover;
+  display: block;
+  margin: auto;
+}

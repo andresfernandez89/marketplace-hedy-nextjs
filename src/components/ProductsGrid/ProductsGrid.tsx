@@ -1,5 +1,6 @@
 import ProductCard from "../ProductCard";
 import { Product } from "../../app/page";
+import styles from "../../styles/cardProduct.module.css";
 
 interface ProductsGridProps {
   products: Product[];
@@ -7,10 +8,12 @@ interface ProductsGridProps {
 
 const ProductsGrid: React.FC<ProductsGridProps> = ({ products }) => {
   return (
-    <div className="m-8 grid grid-cols-3 gap-x-20 gap-y-8 self-center">
-      {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
-      ))}
+    <div className={styles.cardProductContainer}>
+      <div className={styles.cardProduct}>
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </div>
     </div>
   );
 };
