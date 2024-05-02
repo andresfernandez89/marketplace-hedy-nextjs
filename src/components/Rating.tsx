@@ -1,4 +1,4 @@
-export default function Rating({ rate }: { rate?: number }) {
+export default function Rating({ rate = 0 }: { rate?: number }) {
   const fullStars = Math.floor(rate || 0);
   const partialStarWidth = (rate % 1) * 22;
   const remainingStars = 5 - fullStars - (rate && rate % 1 !== 0 ? 1 : 0);
