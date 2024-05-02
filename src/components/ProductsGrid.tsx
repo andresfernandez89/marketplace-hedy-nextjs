@@ -1,9 +1,9 @@
-import ProductCard from "../ProductCard";
-import { Product } from "../../app/page";
-import styles from "../../styles/cardProduct.module.css";
+import styles from "@/styles/cardProduct.module.css";
+import { IProduct } from "@/types/Api";
+import ProductCard from "./ProductCard";
 
 interface ProductsGridProps {
-  products: Product[];
+  products: IProduct[];
 }
 
 const ProductsGrid: React.FC<ProductsGridProps> = ({ products }) => {
