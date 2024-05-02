@@ -5,6 +5,7 @@ import { Inter as FontSans } from "next/font/google";
 import AppWrapper from "./context/AuthContext";
 import { CartProvider } from "./context/CartContext";
 import "./globals.css";
+import Footer from "@/components/Footer";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -34,6 +35,7 @@ export default function RootLayout({
             <CartProvider>
               <Navbar />
               {children}
+              <Footer />
             </CartProvider>
           </AppWrapper>
         </body>

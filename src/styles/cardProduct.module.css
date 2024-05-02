@@ -11,7 +11,14 @@
   color: #333;
   background-color: whitesmoke;
 }
-
+.productFeatures {
+  display: flex;
+}
+.counterContainer {
+  position: relative;
+  bottom: 25px;
+  left: 20px;
+}
 .subContainer {
   margin: auto;
   width: 1200px;
@@ -64,6 +71,14 @@
 }
 
 /*  */
+
+.product {
+  font-size: 0.9rem;
+  text-align: center;
+}
+.product:nth-child(1) {
+  text-align: left;
+}
 .removeButton {
   color: #f44336;
   border: none;
@@ -75,7 +90,9 @@
 }
 
 .quantity {
-  text-align: center;
+  position: relative;
+  width: 120px;
+  bottom: 15px;
 }
 .quantityValue {
   width: 20px;
@@ -213,8 +230,8 @@
 }
 .cardImage {
   margin: 0 auto;
-  width: 200px;
-  height: 200px;
+  width: 150px !important;
+  height: 150px !important;
   object-fit: contain;
   object-position: center;
 }

@@ -17,6 +17,7 @@ const Navbar = () => {
   const userMenuRef = useRef<HTMLDivElement>(null);
   const [isCartUpdated, setIsCartUpdated] = useState<boolean>(false);
   const [countProd, setCountProd] = useState<number>(0);
+  const currentUser = auth.currentUser;
 
   useEffect(() => {
     let totalProd = 0;
@@ -126,12 +127,14 @@ const Navbar = () => {
                 >
                   Home
                 </Link>
-                <Link
-                  href="/about"
-                  className={`${styles.link} flex items-center rounded-md px-1 py-2 text-sm text-gray-300`}
-                >
-                  About
-                </Link>
+                {currentUser && (
+                  <Link
+                    href="/profile"
+                    className={`${styles.link} flex items-center rounded-md px-1 py-2 text-sm text-gray-300`}
+                  >
+                    Profile
+                  </Link>
+                )}
               </div>
             </div>
           </div>

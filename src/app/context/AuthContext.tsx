@@ -66,6 +66,7 @@ export default function AppWrapper({ children }: Props) {
   const signOut = async () => {
     try {
       await auth.signOut();
+      router.push("/");
     } catch (error) {
       console.error("Error signing out with Google.", error);
       alert("There was an error signing out. Please try again later");

@@ -71,3 +71,51 @@
 .logoUser {
   filter: invert(100%);
 }
+/*Footer*/
+
+.footer {
+  width: 100%;
+  color: #414040;
+  padding: 20px 0;
+}
+
+.footerContainer {
+  display: flex;
+  justify-content: space-around;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.footerColumn {
+  flex: 1;
+  padding: 0 20px;
+}
+
+.footerColumn h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.footerColumn ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footerColumn ul li {
+  margin-bottom: 5px;
+}
+
+.footerColumn ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.footerSocial {
+  display: flex;
+  justify-content: space-around;
+}
+
+.footerSocial span {
+  color: #fff;
+}

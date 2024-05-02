@@ -13,6 +13,7 @@ import styles from "../styles/cardProduct.module.css";
 import { capitalizeFirstLetter } from "@/lib/utils";
 import Rating from "../components/Rating";
 import { IProduct } from "@/types/Api";
+import Counter from "./Counter";
 
 interface ProductCardProps {
   product: IProduct;
@@ -25,14 +26,19 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <Image
           src={product.image}
           alt={product.title}
-          width={200}
-          height={200}
+          width={180}
+          height={180}
           className={styles.cardImage}
         />
         <div className={styles.cardDescription}>
           <p>{product.title}</p>
-          <div className={styles.addCart}>
-            <Rating rate={product.rating.rate} />
+          <div className={styles.productFeatures}>
+            <div className={styles.addCart}>
+              <Rating rate={product.rating.rate} />
+            </div>
+            <div className={styles.counterContainer}>
+              <Counter product={product} />
+            </div>
           </div>
           <div className={styles.cardInformation}>
             <p>{capitalizeFirstLetter(product.category)}</p>

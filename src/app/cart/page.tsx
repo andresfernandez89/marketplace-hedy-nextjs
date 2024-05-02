@@ -7,6 +7,8 @@ import { toast } from "react-toastify";
 import { useState } from "react";
 import PurchaseConfirm from "@/components/Purchase";
 import Counter from "@/components/Counter";
+import { db } from "../firebase/firebaseConfig";
+import { collection, addDoc } from "firebase/firestore";
 
 export default function Cart() {
   const [showConfirmation, setShowConfirmation] = useState<boolean>(false);
@@ -40,9 +42,33 @@ export default function Cart() {
     });
   };
 
+  const addPurchaseToFirebase = async () => {
+    if (!user) {
+      alert("Login to purchase.");
+      return;
+    }
+
+    try {
+      cart.forEach(async (product) => {
+        await addDoc(collection(db, "purchaseRecord"), {
+          productId: product.id,
+          productName: product.title,
+          quantity: product.quantity,
+          price: product.price,
+          total: totalByProduct[product.id],
+          userId: user.uid,
+          date: new Date(),
+        });
+      });
+    } catch (error) {
+      alert(error);
+    }
+  };
+
   const handleBuy = () => {
     if (user) {
       setShowConfirmation(true);
+      addPurchaseToFirebase();
       notify();
     } else {
       notifyInfo();
