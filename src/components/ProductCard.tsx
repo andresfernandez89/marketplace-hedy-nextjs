@@ -1,4 +1,3 @@
-import { Product } from "@/app/page";
 import Link from "next/link";
 // import {
 //   Card,
@@ -13,9 +12,10 @@ import Image from "next/image";
 import styles from "../styles/cardProduct.module.css";
 import { capitalizeFirstLetter } from "@/lib/utils";
 import Rating from "../components/Rating";
+import { IProduct } from "@/types/Api";
 
 interface ProductCardProps {
-  product: Product;
+  product: IProduct;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {

@@ -17,6 +17,7 @@ const HomeHero = () => {
               height={0}
               alt="image1"
               className={styles.carouselImg}
+              priority
             />
           </Carousel.Item>
           <Carousel.Item interval={4000} className={styles.carouselItem}>
@@ -26,6 +27,7 @@ const HomeHero = () => {
               height={0}
               alt="image1"
               className={styles.carouselImg}
+              priority
             />
           </Carousel.Item>
           <Carousel.Item interval={4000} className={styles.carouselItem}>
@@ -35,6 +37,7 @@ const HomeHero = () => {
               height={0}
               alt="image1"
               className={styles.carouselImg}
+              priority
             />
           </Carousel.Item>
         </Carousel>

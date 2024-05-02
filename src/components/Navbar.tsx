@@ -16,6 +16,15 @@ const Navbar = () => {
   const menuRef = useRef<HTMLDivElement>(null);
   const userMenuRef = useRef<HTMLDivElement>(null);
   const [isCartUpdated, setIsCartUpdated] = useState<boolean>(false);
+  const [countProd, setCountProd] = useState<number>(0);
+
+  useEffect(() => {
+    let totalProd = 0;
+    for (const product of cart) {
+      totalProd += product.quantity;
+    }
+    setCountProd(totalProd);
+  }, [cart]);
 
   const renderUserAvatar = () => {
     const currentUser = auth.currentUser;
@@ -44,7 +53,7 @@ const Navbar = () => {
               fontWeight: "bold",
             }}
           >
-            {userInitial}
+            <span>{userInitial}</span>
           </div>
         );
       }
@@ -60,21 +69,6 @@ const Navbar = () => {
       );
     }
   };
-
-  let countProd = 0;
-  let storageCart;
-  if (typeof window !== "undefined") {
-    storageCart = localStorage.getItem("cart");
-  }
-
-  if (storageCart !== null && storageCart !== undefined) {
-    const cartArray = JSON.parse(storageCart);
-    let totalProd = 0;
-    for (const product of cartArray) {
-      totalProd += product.quantity;
-      countProd = totalProd;
-    }
-  }
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
