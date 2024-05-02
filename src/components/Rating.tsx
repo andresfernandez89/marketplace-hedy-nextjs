@@ -1,6 +1,6 @@
-export default function Rating({ rate }: { rate?: number }) {
+export default function Rating({ rate = 0 }: { rate?: number }) {
   const fullStars = Math.floor(rate || 0);
-  const partialStarWidth = (rate % 1) * 22;
+  const partialStarWidth = typeof rate === "number" ? (rate % 1) * 22 : 0;
   const remainingStars = 5 - fullStars - (rate && rate % 1 !== 0 ? 1 : 0);
   return (
     <div className="flex flex-row font-normal text-gray-700 dark:text-gray-400">

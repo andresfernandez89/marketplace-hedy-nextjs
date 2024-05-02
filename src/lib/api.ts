@@ -1,4 +1,4 @@
-import { IProduct } from "@/types/Api";
+import { type IProduct } from "@/types/Api";
 
 const getApiUrl = async (path: string) => {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URI}${path}`);
