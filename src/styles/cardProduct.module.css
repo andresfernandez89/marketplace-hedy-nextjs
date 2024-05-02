@@ -14,6 +14,7 @@
 
 .subContainer {
   margin: auto;
+  width: 1200px;
 }
 .cartContainer h2 {
   text-align: center;

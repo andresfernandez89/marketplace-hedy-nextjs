@@ -119,7 +119,9 @@ export default function Cart() {
             <p className={styles.emptyCartText}>No products in the cart.</p>
           </div>
         )}
-        {showConfirmation && <PurchaseConfirm onClose={handleClosePopup} />}
+        <div>
+          {showConfirmation && <PurchaseConfirm onClose={handleClosePopup} />}
+        </div>
       </div>
     </div>
   );
