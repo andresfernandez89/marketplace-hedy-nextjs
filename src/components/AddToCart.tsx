@@ -1,23 +1,23 @@
 "use client";
 import { useCart } from "@/app/context/CartContext";
 import { IItem } from "@/types/Cart";
-import React from "react";
 import { Button } from "./ui/button";
 
-interface Props {
-  product: IItem;
-}
-
-const AddToCartButton: React.FC<Props> = ({ product }) => {
-  const { addItem } = useCart();
+const AddToCartButton = ({ product }: { product: IItem }) => {
+  const { addItem, cart, increaseQty } = useCart();
+  const cartItem = cart.find((item) => item.id === product.id);
 
   const handleAddToCart = () => {
-    addItem(product);
+    if (cartItem) {
+      increaseQty(product.id);
+    } else {
+      addItem(product);
+    }
   };
 
   return (
     <Button size="sm" onClick={handleAddToCart}>
-      Add to Cart
+      {cartItem ? `Quantity: ${cartItem.quantity}` : "Add to Cart"}
     </Button>
   );
 };

@@ -31,12 +31,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         />
         <div className={styles.cardDescription}>
           <p>{product.title}</p>
-          <Rating rate={product.rating.rate} />
+          <div className={styles.addCart}>
+            <Rating rate={product.rating.rate} />
+          </div>
           <div className={styles.cardInformation}>
             <p>{capitalizeFirstLetter(product.category)}</p>
             <p>${product.price}</p>
           </div>
-
           <Link href={`/${product.id}`} className={styles.link}>
             See details
           </Link>

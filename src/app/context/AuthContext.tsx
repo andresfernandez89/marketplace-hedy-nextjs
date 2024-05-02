@@ -1,6 +1,5 @@
 "use client";
 import { type User, type AppContextType } from "@/types/Auth";
-import { type Product, type CartContextType } from "@/types/cart";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -19,11 +18,11 @@ import {
   User as FirebaseUser,
 } from "firebase/auth";
 import { app } from "@/app/firebase/firebaseConfig";
+import { useRouter } from "next/navigation";
 
 const auth = getAuth(app);
 
 const AppContext = createContext<AppContextType | null>(null);
-const CartContext = createContext<CartContextType | null>(null);
 
 interface Props {
   children: ReactNode;
@@ -31,15 +30,7 @@ interface Props {
 
 export default function AppWrapper({ children }: Props) {
   const [user, setUser] = useState<User | null>(null);
-  const [cart, setCart] = useState<Product[]>([]);
-
-  const addToCart = (product: Product) => {
-    setCart([...cart, product]);
-  };
-
-  const clearCart = () => {
-    setCart([]);
-  };
+  const router = useRouter();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(
@@ -53,13 +44,14 @@ export default function AppWrapper({ children }: Props) {
             photoURL: user.photoURL || "",
           };
           setUser(newUser);
+          router.push("/");
         } else {
           setUser(null);
         }
       },
     );
     return () => unsubscribe();
-  }, []);
+  }, [router]);
 
   const provider = new GoogleAuthProvider();
   const signInWithGoogle = async () => {
@@ -82,10 +74,8 @@ export default function AppWrapper({ children }: Props) {
 
   return (
     <AppContext.Provider value={{ user, signOut, signIn: signInWithGoogle }}>
-      {/* <CartContext.Provider value={{ cart, addToCart, clearCart }}> */}
       <ToastContainer />
       {children}
-      {/* </CartContext.Provider> */}
     </AppContext.Provider>
   );
 }
@@ -97,13 +87,3 @@ export const useAuth = (): AppContextType => {
   }
   return context;
 };
-
-// export const useCart = (): CartContextType => {
-//   const context = useContext(CartContext);
-//   if (!context) {
-//     throw new Error(
-//       "useCarrito debe ser utilizado dentro de un CarritoProvider",
-//     );
-//   }
-//   return context;
-// };

@@ -7,20 +7,67 @@ import { useAuth } from "../app/context/AuthContext";
 import cartImg from "../../public/cart.png";
 import logoUser from "../../public/user.png";
 import styles from "../styles/navbar.module.css";
+import { auth } from "@/app/firebase/firebaseConfig";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { user, signIn, signOut } = useAuth();
+  const { user, signOut } = useAuth();
   const { cart } = useCart();
   const menuRef = useRef<HTMLDivElement>(null);
   const userMenuRef = useRef<HTMLDivElement>(null);
   const [isCartUpdated, setIsCartUpdated] = useState<boolean>(false);
 
+  const renderUserAvatar = () => {
+    const currentUser = auth.currentUser;
+
+    if (currentUser) {
+      if (currentUser.photoURL) {
+        return (
+          <Image
+            src={currentUser.photoURL}
+            alt="User photo"
+            width={60}
+            height={60}
+            className="h-6 w-6 rounded-full"
+          />
+        );
+      } else {
+        const userInitial = currentUser.email
+          ? currentUser.email.charAt(0).toUpperCase()
+          : "";
+        return (
+          <div
+            className="flex h-6 w-6 items-center justify-center rounded-full text-white"
+            style={{
+              fontSize: "15px",
+              border: "1px solid whitesmoke",
+              fontWeight: "bold",
+            }}
+          >
+            {userInitial}
+          </div>
+        );
+      }
+    } else {
+      return (
+        <Image
+          src={logoUser}
+          alt="User logo"
+          width={60}
+          height={60}
+          className={`${styles.logoUser} h-6 w-6 rounded-full`}
+        />
+      );
+    }
+  };
+
   let countProd = 0;
+  let storageCart;
+  if (typeof window !== "undefined") {
+    storageCart = localStorage.getItem("cart");
+  }
 
-  const storageCart = localStorage.getItem("cart");
-
-  if (storageCart !== null) {
+  if (storageCart !== null && storageCart !== undefined) {
     const cartArray = JSON.parse(storageCart);
     let totalProd = 0;
     for (const product of cartArray) {
@@ -33,8 +80,7 @@ const Navbar = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const handleLoginClick = () => {
-    signIn();
+  const closeMenu = () => {
     setIsMenuOpen(false);
   };
 
@@ -100,18 +146,15 @@ const Navbar = () => {
               <Image
                 src={cartImg}
                 alt="cart"
-                width="0"
-                height="0"
+                width={0}
+                height={0}
                 className={styles.cart}
-                // className={`${styles.cart} ${isCartUpdated ? styles.show : ""}`}
                 style={{ width: "60px", height: "auto" }}
                 priority
               />
               {countProd != 0 && (
                 <div className={styles.countItem}>
-                  <p
-                    className={`${styles.cart} ${isCartUpdated ? styles.show : ""}`}
-                  >
+                  <p className={`${isCartUpdated ? styles.show : ""}`}>
                     {countProd}
                   </p>
                 </div>
@@ -121,28 +164,12 @@ const Navbar = () => {
               <div>
                 <button
                   type="button"
-                  className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                  className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none"
                   onClick={toggleMenu}
                 >
                   <span className="absolute -inset-1.5"></span>
                   <span className="sr-only">Open user menu</span>
-                  {user ? (
-                    <Image
-                      className="h-6 w-6 rounded-full"
-                      src={user.photoURL}
-                      alt="User photo"
-                      width={60}
-                      height={60}
-                    />
-                  ) : (
-                    <Image
-                      src={logoUser}
-                      alt="User logo"
-                      width={60}
-                      height={60}
-                      className={`${styles.logoUser} h-6 w-6 rounded-full`}
-                    />
-                  )}
+                  {renderUserAvatar()}
                 </button>
               </div>
               {isMenuOpen && (
@@ -161,16 +188,16 @@ const Navbar = () => {
                       role="menuitem"
                       tabIndex={-1}
                     >
-                      Logout
+                      Log out
                     </button>
                   ) : (
-                    <button
-                      onClick={handleLoginClick}
-                      className="block px-4 py-1 text-sm text-gray-700"
-                      role="menuitem"
-                      tabIndex={-1}
-                    >
-                      Log in with Google
+                    <button onClick={closeMenu}>
+                      <Link
+                        href="/login"
+                        className="block px-4 py-1 text-sm text-gray-900"
+                      >
+                        Log in
+                      </Link>
                     </button>
                   )}
                 </div>

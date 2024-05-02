@@ -3,8 +3,6 @@
 /*CART SECTION*/
 
 .cartContainer {
-  /* position: relative;
-  top: 50px; */
   width: 100%;
   overflow-x: auto;
   white-space: nowrap;
@@ -13,6 +11,7 @@
   color: #333;
   background-color: whitesmoke;
 }
+
 .subContainer {
   margin: auto;
 }
@@ -218,10 +217,10 @@
   object-fit: contain;
   object-position: center;
 }
-.cartBtn {
-  position: relative;
-  bottom: 20px;
+.productCounter span {
+  color: #333;
 }
+
 /*Category*/
 
 .categoryContainer {
@@ -270,3 +269,11 @@
 .purchaseDetails tr > td:first-child {
   text-align: left;
 }
+
+/* .counterBtn span{
+  position: relative;
+  margin: auto;
+  right: 3px;
+  bottom: 2px;
+
+} */

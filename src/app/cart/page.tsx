@@ -6,19 +6,13 @@ import { useAuth } from "../context/AuthContext";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import PurchaseConfirm from "@/components/Purchase";
+import Counter from "@/components/Counter";
 
 export default function Cart() {
   const [showConfirmation, setShowConfirmation] = useState<boolean>(false);
-  const {
-    cart,
-    clear,
-    deleteItem,
-    increaseQty,
-    decreaseQty,
-    totalSpent,
-    totalByProduct,
-  } = useCart();
+  const { cart, clear, deleteItem, totalSpent, totalByProduct } = useCart();
   const { user } = useAuth();
+
   const handleClosePopup = () => {
     setShowConfirmation(false);
   };
@@ -33,18 +27,6 @@ export default function Cart() {
       draggable: true,
       progress: undefined,
     });
-
-  const notifyError = () => {
-    toast.error("Something went wrong. Try it later please.", {
-      position: "top-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  };
 
   const notifyInfo = () => {
     toast.info("Please login to purchase.", {
@@ -107,21 +89,7 @@ export default function Cart() {
                         </div>
                       </td>
                       <td className={styles.quantity}>
-                        <button
-                          className={styles.quantityButton}
-                          onClick={() => decreaseQty(product.id)}
-                        >
-                          -
-                        </button>
-                        <span className={styles.quantityValue}>
-                          {product.quantity}
-                        </span>
-                        <button
-                          className={styles.quantityButton}
-                          onClick={() => increaseQty(product.id)}
-                        >
-                          +
-                        </button>
+                        <Counter product={product} />
                       </td>
                       <td className={styles.price}>${product.price}</td>
                       <td className={styles.total}>

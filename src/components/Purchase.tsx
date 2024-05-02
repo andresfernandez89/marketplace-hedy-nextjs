@@ -1,5 +1,4 @@
 import { useCart } from "@/app/context/CartContext";
-import React, { useState, useEffect } from "react";
 import styles from "../styles/cardProduct.module.css";
 
 interface PurchaseConfirmationPopupProps {

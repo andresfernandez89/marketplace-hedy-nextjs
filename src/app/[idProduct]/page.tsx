@@ -7,11 +7,11 @@ import {
 import { getProductByIdWithDelay } from "@/lib/api";
 import { capitalizeFirstLetter } from "@/lib/utils";
 import Image from "next/image";
-// import Counter from "@/components/counter";
-import AddToCartButton from "@/components/AddToCart";
+// +import AddToCartButton from "@/components/AddToCart";
 import Rating from "@/components/Rating";
 import { IProduct } from "@/types/Api";
 import styles from "../../styles/cardProduct.module.css";
+import Counter from "@/components/Counter";
 
 export default async function ProductId({
   params,
@@ -59,7 +59,8 @@ export default async function ProductId({
             <div
               className={`${styles.cartBtn} mt-4 flex flex-col items-end md:mt-1 md:pr-2`}
             >
-              <AddToCartButton product={product} />
+              {/* <AddToCartButton product={product} /> */}
+              <Counter product={product} />
             </div>
           </div>
         </div>
