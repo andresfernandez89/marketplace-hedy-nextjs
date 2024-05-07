@@ -4,6 +4,8 @@ Website marketplace about different products.
 
 ## Demo
 
+https://marketplace-hedy-nextjs-andresfernandez89s-projects.vercel.app/
+
 ## Tech Stack
 
 Next JS, TypeScript, Tailwind, Shadcn, Firebase.
@@ -64,4 +66,3 @@ To run this project, you will need to add the following environment variables to
 
 - [@andresfernandez89](https://github.com/andresfernandez89)
 - [@Briantahiel](https://github.com/Briantahiel)
-- [@JeremiasOviedo](https://github.com/JeremiasOviedo)
